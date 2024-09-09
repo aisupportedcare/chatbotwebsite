@@ -1,0 +1,257 @@
+<!-- Development Team
+Bilal Mirza - Lead UI design
+email: bbmirza117@gmail.com
+
+Bradley Naylon - HTML & JavaScript
+email: bradleynaylon@yahoo.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+    <!--title-->
+    <title>CARE - Submission</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--icon-->
+    <link rel="shortcut icon" href="images/CareLogo-1.png">
+    <!--Import-poppins-font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--Font-Awesome-for-Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+<script>
+
+	async function fetchWithRetry(url, options, retries = 3, backoff = 15000) {
+		let attempt = 0;
+		while (attempt < retries) {
+			try {
+				const response = await fetch(url, options);
+				if (response.ok) {
+					return response;
+				} else {
+					throw new Error(`Request failed with status ${response.status}`);
+				}
+			} catch (error) {
+				attempt++;
+				if (attempt >= retries) {
+					throw error;
+				}
+				console.log(`Retrying request... attempt ${attempt}`);
+				await new Promise(resolve => setTimeout(resolve, backoff));
+			}
+		}
+		window.alert("Something went wrong. Please try again later.");
+	}
+
+	async function checkPin(){
+		document.getElementById("loadingOverlay").style.display = "flex";
+		const codeName = document.getElementById("codeName").value;
+		const pin = document.getElementById("pin").value;
+		const endpoint = '/data-api/rest/checkpin';
+		const response = await fetchWithRetry(`${endpoint}?userID=${codeName}&pin=${pin}`);
+		const data = await response.json();
+		
+		if(!data.value || data.value.length === 0 || data.value[0].userID === null){
+		window.alert("Codename or Pin incorrect. Please check your spelling and try again.");
+		document.getElementById("loadingOverlay").style.display = "none";
+		return 0;
+		}
+		document.getElementById("loggedInAs").innerHTML = document.getElementById("codeName").value;
+		document.getElementById("hiddenUntilVerified").style.display = "block";
+		document.getElementById("hiddenAfterVerified").style.display = "none";
+		document.getElementById("loadingOverlay").style.display = "none";
+		return 1;
+	}
+	
+	async function submission(event) {
+	  event.preventDefault();
+	  if(await checkPin() !== 1){
+			return;
+		}
+	  document.getElementById("loadingOverlay").style.display = "flex";
+	  //Direct construction of JSON Method
+	  const codeName = document.getElementById("codeName").value;
+	  const data = {
+		userID: codeName,
+		intervention: document.getElementById("intervention").value,
+		targeted: document.getElementById("target").value,
+		environment: document.getElementById("environment").value,
+		effect: document.getElementById("effect").value,
+		addinfo: document.getElementById("addinfo").value
+	  };
+	  const endpoint = `/data-api/rest/submission/`;
+	  const response = await fetchWithRetry(endpoint, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(data)
+	  });
+	  const result = await response.json();
+	  if(response.status === 409 || response.status === 500){
+	    window.alert("Something went wrong, please try again.");
+		document.getElementById("loadingOverlay").style.display = "none";
+		return;
+		}
+	  document.getElementById("loadingOverlay").style.display = "none";
+		window.alert("Submission made for codename: " + codeName);
+	  console.table(result.value);
+	}
+	
+	function logOut() {
+		document.getElementById("hiddenUntilVerified").style.display = "none";
+		document.getElementById("hiddenAfterVerified").style.display = "block";
+		document.getElementById("pin").value = "";
+		var inputs = document.getElementsByTagName("input");
+		for(var elem = 0; elem < inputs.length; elem++){
+			if(inputs[elem].type == "text"){
+				inputs[elem].value = "";
+				}
+			}
+		var textareas = document.getElementsByTagName("textarea");
+		for(var elem = 0; elem < textareas.length; elem++){
+			textareas[elem].value = "";
+			}
+		}
+</script>
+<body>
+	<!-- Spinner Animation -->
+	<<div id="loadingOverlay">
+		<div id="loadingSpinner" class="cssload-container">
+			<div class="cssload-whirlpool"></div>
+			<div class="loading-message">Please wait while we process your request. This could take up to two minutes.</div>
+		</div>
+	</div>
+        <!--**nav****************************-->
+        <nav class="navigation">
+            <!--menu-btn-->
+            <input type="checkbox" class="menu-btn" id="menu-btn" />
+            <label for="menu-btn" class=menu-icon>
+                <span class="nav-icon"></span>
+            </label>
+            <!--logo-->
+            <a href="index.html" class="logo">
+                <img src="images/CareLogo-1.png" alt="" width="40px" height="60px" />
+            </a>
+
+            <!--menu-->
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="mobile.html">Mobile</a></li>
+                <!-- insert link to google form below -->
+                <li><a href="https://forms.office.com/r/BNEXk8XpCs">Contact</a></li>
+
+            </ul>
+            <!--button-->
+            <a href="submission.html" class="nav-TakeSurvey-btn">Case Survey</a>
+            <a href="register.html" class="nav-TakeSurvey-btn">Register</a>
+			<a href="form.html" class="nav-Profile-btn">Update Profile</a>
+        </nav> <!--nav-end-->
+        <!--**content******************************-->
+  </section>
+  <section id="form">
+	<form>
+        <h1>CARE Intervention Submission</h1>
+        <a href="register.html"><strong>If you do not have a Codename yet, make sure to complete our first time registry form by clicking here.</strong></a>
+        <hr/>
+		<div class="form-question">
+		<div id="hiddenAfterVerified">
+          <h2>Codename</h2>
+          <input type="text" id="codeName" placeholder="Codename" required><br>
+		  <input type="password" id="pin" maxlength="4" autocomplete="false" placeholder="Pin" required><br>
+		  <input type="button" id="verify" class="autofill-button" value="Enter" onclick="checkPin()">
+		</div>
+		</div>
+		<div id="hiddenUntilVerified" style="display: none">
+		<h3>Logged in as:</h3>
+		  <h3 id="loggedInAs"></h3>
+		  <input type="button" class="autofill-button" value="Log Out" onclick="logOut()"><br>
+		<div class="form-question">
+		  <h2>Intervention</h2>
+            <textarea maxlength="2000" name="intervention" id="intervention" placeholder="Briefly describe the intervention used." required></textarea>
+		</div>
+		<div class="form-question">
+          <h2>Targeted Behavior/Skill</h2>
+            <textarea maxlength="2000" name="target" id="target" placeholder="Please state the targeted behavior or skill this intervention hopes to address." required></textarea>
+        </div>
+		<div class="form-question">
+          <h2>Environment</h2>
+            <textarea maxlength="2000" name="environment" id="environment" placeholder="Briefly describe the environment of the intervention (e.g., outdoor vs. indoor; home or school or public space)." required></textarea>
+        </div>
+		<div class="form-question">
+          <h2>Effectiveness</h2>
+		  <select name="effect" id="effect" required>
+			<option value="x">Select</option>
+			<option value="1">1 (negative effect)</option>
+			<option value="2">2 (not effective)</option>
+			<option value="3">3 (slightly effective)</option>
+			<option value="4">4 (moderately effective)</option>
+			<option value="5">5 (very effective)</option>
+		  </select>
+        </div>
+		<div class="form-question">
+          <h2>Additional Information</h2>
+            <textarea maxlength="2000" name="addinfo" id="addinfo" placeholder="Additional data on the impact of the intervention on the targeted behavior or skill." required></textarea>
+        </div>
+          <input type="button" value="Submit" class="autofill-button" onclick="submission(event)"><br>
+		  </div>
+	</form>
+  </section>
+	     <!--==Footer=============================================-->
+    <footer>
+        <div class="footer-container">
+
+            <!--company-box-->
+            <div class="footer-company-box">
+                <!--logo-->
+                <a href="index.html" class="footer-logo">
+                    <img src="images/CareLogo-1.png" alt="" />
+                </a>
+                <!--details-->
+                <p>
+                    The CARE Project supports patients with autism and their families during
+                    medical visits. CARE supports healthcare providers in delivering patient, and family centered care that is
+                    informed by evidence-based practices used in general and special education classrooms.
+                </p>
+                <!--social-box-->
+                <!--place holders for when social media is created-->
+                <div class="footer-social">
+                    <!--<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>-->
+                </div>
+            </div><!--company-box-end-->
+            <!--link-->
+
+            <div class="footer-link-box">
+                <strong>Main Links</strong>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                    <!-- insert link to google form below -->
+                    <li><a href="https://forms.office.com/r/BNEXk8XpCs">Contact</a></li>
+					<li><a href="register.html">Register</a></li>
+                    <li><a href="form.html">Update Profile</a></li>
+                    <li><a href="submission.html">Case Survey</a></li>
+                </ul>
+            </div>
+        </div><!--container-end-->
+        <!--Wait on Copywrite
+        <div class="footer-bottom">
+            <span>Made By CARE</span>
+            <span>Copyright 2023 - CARE</span>
+        </div>-->
+    </footer> <!--footer-end-->
+
+
+</body>
+</html>

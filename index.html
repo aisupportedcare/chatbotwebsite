@@ -1,0 +1,353 @@
+<!-- Development Team
+Bradley Naylon - HTML & JavaScript
+email: bradleynaylon@yahoo.com
+
+Bilal Mirza - Lead UI design
+email: bbmirza117@gmail.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+    <!--title-->
+    <title>CARE - Profile</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--icon-->
+    <link rel="shortcut icon" href="images/CareLogo-1.png">
+    <!--Import-poppins-font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--Font-Awesome-for-Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+<script>
+
+	async function fetchWithRetry(url, options, retries = 3, backoff = 15000) {
+		let attempt = 0;
+		while (attempt < retries) {
+			try {
+				const response = await fetch(url, options);
+				if (response.ok) {
+					return response;
+				} else {
+					throw new Error(`Request failed with status ${response.status}`);
+				}
+			} catch (error) {
+				attempt++;
+				if (attempt >= retries) {
+					throw error;
+				}
+				console.log(`Retrying request... attempt ${attempt}`);
+				await new Promise(resolve => setTimeout(resolve, backoff));
+			}
+		}
+		window.alert("Something went wrong. Please try again later.");
+	}
+
+	
+	async function botWindowUp() {
+	    // Create the middle layer
+	    var middleLayer = document.createElement("div");
+	    middleLayer.id = "middle-layer";
+	    document.body.appendChild(middleLayer);
+
+	    // Create the top layer
+	    var topLayer = document.createElement("div");
+	    topLayer.id = "top-layer";
+	    document.body.appendChild(topLayer);
+	};
+	
+	async function formSubmission(event) {
+		document.getElementById("loadingOverlay").style.display = "block";
+		event.preventDefault();
+		const data = {
+			userID: document.getElementById("codeName").value,
+			disability_category: document.getElementById("disability_category").value,
+			ageYear: document.getElementById("ageYear").value,
+			ageMonth: document.getElementById("ageMonth").value,
+			educational_functional_perf: document.getElementById("educational_functional_perf").value,
+			glpReading: document.getElementById("glpReading").value,
+			glpWriting: document.getElementById("glpWriting").value,
+			glpMath: document.getElementById("glpMath").value,
+			glpOther: document.getElementById("glpOther").value,
+			glpOtherLevel: document.getElementById("glpOtherLevel").value,
+			behavioral_perf: document.getElementById("behavioral_perf").value,
+			physical_perf: document.getElementById("physical_perf").value,
+			health_perf: document.getElementById("health_perf").value,
+			strength_interest: document.getElementById("strength_interest").value,
+			area_of_need: document.getElementById("area_of_need").value,
+			development_related_to_peers: document.getElementById("development_related_to_peers").value,
+			communication_needs: document.getElementById("communication_needs").value,
+			assistive_tech: document.getElementById("assistive_tech").value,
+			visual_impaired: document.getElementById("visual_impaired").value,
+			hearing_impaired: document.getElementById("hearing_impaired").value,
+			behavior_intervention_plan: document.getElementById("behavior_intervention_plan").value,
+			restraint_seclusion: document.getElementById("restraint_seclusion").value,
+			english_learner: document.getElementById("english_learner").value,
+			instructional_assesment_accessibility: document.getElementById("instructional_assesment_accessibility").value,
+			instructional_assesment_accommodations: document.getElementById("instructional_assesment_accommodations").value,
+			supplementary_aids: document.getElementById("supplementary_aids").value,
+			annual_goals: document.getElementById("annual_goals").value,
+			special_ed_services: document.getElementById("special_ed_services").value,
+			related_services: document.getElementById("related_services").value,
+			special_ed_and_related_services_freq: document.getElementById("special_ed_and_related_services_freq").value,
+			interventions: document.getElementById("interventions").value,
+			intervention_goals: document.getElementById("intervention_goals").value,
+			goal_progress: document.getElementById("goal_progress").value
+		};
+		const endpoint = `http://localhost:5000/add-code`;
+		const response = await fetchWithRetry(endpoint, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data)
+		});
+		if(!response.ok){
+			window.alert("Something went wrong, please try again.");
+			document.getElementById("loadingOverlay").style.display = "none";
+			return;
+		}
+		const result = await response.json();
+		document.getElementById("loadingOverlay").style.display = "none";
+		window.alert("Profile updated for codename: " + document.getElementById("codeName").value);
+	}
+
+</script>
+<body>
+	<div id="middle-layer" style="display: none"></div>
+	<div id="top-layer" style="display: none"></div>
+	<!-- Spinner Animation -->
+	<div id="loadingOverlay">
+		<div id="loadingSpinner" class="cssload-container">
+			<div class="cssload-whirlpool"></div>
+			<div class="loading-message">Please wait while we process your request. This could take up to two minutes.</div>
+		</div>
+	</div>
+        <!--**content******************************-->
+  
+  <!-- Beginning of Form -->
+	<section id="profile">
+      <form onsubmit="formSubmission(event)">
+        <h1>CARE Profile</h1>
+        <p>This form contains detailed informaiton about a specific individual with ASD or a related disorder. This form can be updated at any time.</p>
+        <hr/>
+		<div class="profile-question">
+          <h2>Passcode</h2>
+		  <p>Please enter your Codename and Pin in the box below.</p>
+          <input type="text" placeholder="Codename" id="codeName" required><br>
+		</div>
+	<input type="button" onclick="botWindowUp()" value="ChatBot">
+		<!-- ##########################################################		Add Questions anywhere below this line		##################################################################### -->
+		<div class="profile-question">
+          <h2>Disability Category of Autism Spectrum Disorder</h2>
+          <input type="text" name="disability_category" id="disability_category" placeholder="autistic disorder, Asperger's disorder, ASD, etc." required>
+		</div>
+		<div class="profile-question">
+		  <h2>Age of Individual</h2>
+		  <div class="age-section">
+		  <input type="text" name="ageYear" id="ageYear" required>
+		  <p>Years and</p>
+		  <input type="text" placeholder="Optional" name="ageMonth" id="ageMonth">
+		  <p>Months</p>
+		  </div>
+		</div>
+		<div class="profile-question">
+          <h2>Level of Educational and Functional Performance</h2>
+            <textarea maxlength="2000" name="educational_functional_perf" id="educational_functional_perf" placeholder="Individualized assessment results, classroom-based assessments, district assessments, classroom-based observations, parent information, student input and general education teacher input in relevant areas. " required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Current Instructional Grade Level Performance</h2>
+			<div class="glp">
+				<p>Reading: </p>
+				<input type="text" name="glpReading" id="glpReading" required>
+				<p>Writing: </p>
+				<input type="text" name="glpWriting" id="glpWriting" required>
+				<p>Math: </p>
+				<input type="text" name="glpMath" id="glpMath" required>
+			</div>
+			<div class="glp-other">
+				<p>Other: </p>
+				<input type="text" name="glpOther" id="glpOther" placeholder="Area (Optional)">
+				<p>Level: </p>
+				<input type="text" name="glpOtherLevel" id="glpOtherLevel" placeholder="Optional">
+			</div>
+		<div class="profile-question">  
+          <h2>Level of Behavioral Performance</h2>
+            <textarea maxlength="2000" name="behavioral_perf" id="behavioral_perf" placeholder="Observations, data sheets/charts." required></textarea>
+        </div>
+		<div class="profile-question">
+          <h2>Level of Physical Performance</h2>
+            <textarea maxlength="2000" name="physical_perf" id="physical_perf" placeholder="Optional"></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Level of Health Performance</h2>
+            <textarea maxlength="2000" name="health_perf" id="health_perf" placeholder="Optional"></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Areas of Strength and Interest</h2>
+            <textarea maxlength="2000" name="strength_interest" id="strength_interest" placeholder="What are some things the child likes to do? What skills does the child demonstrate or is beginning to demonstrate? " required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Areas of Need</h2>
+            <textarea maxlength="2000" name="area_of_need" id="area_of_need" placeholder="What are some things or behaviors that the child does not do or are difficult for the child? In what activities or skill areas does the child need considerable support and/or practice? " required></textarea>
+        </div>
+		<div class="profile-question">
+		<div class="dev-select">
+          <h2>Development Related to Same-Age Peers</h2><br>
+			<select name="development_related_to_peers" id="development_related_to_peers">
+				<option value="No Answer">Select</option>
+				<option value="has the skills that we would expect of his/her age in regard to this area.">Has the skills that we would expect of his/her age in regard to this area.</option>
+				<option value="has the skills that we would expect of his/her age in regard to this area; however, there are concerns with this area.">Has the skills that we would expect of his/her age in regard to this area; however, there are concerns with this area.</option>
+				<option value="shows many age expected skills, but continues to show some functioning that might be described like that of a slightly younger child in this area.">Shows many age expected skills, but continues to show some functioning that might be described like that of a slightly younger child in this area.</option>
+				<option value="shows occasional use of some age expected skills, but more of his/her skills are not yet age expected in this area.">Shows occasional use of some age expected skills, but more of his/her skills are not yet age expected in this area.</option>
+				<option value="is not yet using skills expected of his/her age. He/she does however use many important and immediate foundational skills to build upon in this area.">Is not yet using skills expected of his/her age. He/she does however use many important and immediate foundational skills to build upon in this area.</option>
+				<option value="is showing some emerging or immediate foundational skills, which will help him/her to work toward age-appropriate skills in this area.">Is showing some emerging or immediate foundational skills, which will help him/her to work toward age-appropriate skills in this area.</option>
+				<option value="functioning might be described as like that of a much younger child. He/she shows early skills, but not yet immediate.">Functioning might be described as like that of a much younger child. He/she shows early skills, but not yet immediate.</option>
+				<option value="foundational or age expected skills in this area.">Foundational or age expected skills in this area.</option>
+			</select>
+        </div>
+		</div>
+		<div class="profile-question">
+          <h2>Communication Needs</h2>
+            <textarea maxlength="2000" name="communication_needs" id="communication_needs" required></textarea>
+          </div>
+		<div class="profile-question">
+          <h2>Assistive Technology</h2>
+            <textarea maxlength="2000" name="assistive_tech" id="assistive_tech" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Blind or Visually Impaired</h2><br>
+			<select name="visual_impaired" id="visual_impaired">
+				<option value="X">Select</option>
+				<option value="Y">Yes</option>
+				<option value="N">No</option>
+			</select>
+        </div>
+		<div class="profile-question">
+          <h2>Deaf or Hard of Hearing</h2><br>
+          <select name="hearing_impaired" id="hearing_impaired">
+				<option value="X">Select</option>
+				<option value="Y">Yes</option>
+				<option value="N">No</option>
+			</select>
+        </div>
+		<div class="profile-question">
+          <h2>Behavior Intervention Plan</h2>
+            <textarea maxlength="2000" name="behavior_intervention_plan" id="behavior_intervention_plan" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Restraint and/or Seclusion</h2>
+            <textarea maxlength="2000" name="restraint_seclusion" id="restraint_seclusion" placeholder="Identify whether the school-based IEP team has determined that restraint and/or seclusion may be required as a part of the Behavior Intervention Plan." required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>English Language Learner</h2><br>
+          <select name="english_learner" id="english_learner" required>
+				<option value="X">Select</option>
+				<option value="Y">Yes</option>
+				<option value="N">No</option>
+			</select>
+        </div>
+		<div class="profile-question">
+          <h2>Instructional and Assessment Accessibility Features</h2>
+            <textarea maxlength="2000" name="instructional_assesment_accessibility" id="instructional_assesment_accessibility" required></textarea>
+        </div>
+		<div class="profile-question"> 
+          <h2>Instructional and Assessment Accommodations</h2>
+            <textarea maxlength="2000" name="instructional_assesment_accommodations" id="instructional_assesment_accommodations" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Supplementary Aids, Services, Program Modifications, and Supports</h2>
+            <textarea maxlength="2000" name="supplementary_aids" id="supplementary_aids" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Annual Goals</h2>
+            <textarea maxlength="2000" name="annual_goals" id="annual_goals" placeholder="List all IEP goals, including Conditions, Behavior, Timeframe, Method of Measurement, and Criteria." required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Special Education Services</h2>
+            <textarea maxlength="2000" name="special_ed_services" id="special_ed_services" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Related Services</h2>
+            <textarea maxlength="2000" name="related_services" id="related_services" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Frequency of Special Education and Related Services</h2>
+            <textarea maxlength="2000" name="special_ed_and_related_services_freq" id="special_ed_and_related_services_freq" placeholder="Indicate frequency, duration, and location for the above selected related services and special education services." required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Interventions</h2>
+            <textarea maxlength="2000" name="interventions" id="interventions" required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Goals of Interventions</h2>
+            <textarea maxlength="2000" name="intervention_goals" id="intervention_goals" placeholder="Indicate the goal(s) the interventions aim to address." required></textarea>
+        </div>
+		<div class="profile-question">  
+          <h2>Progress Toward Goals</h2>
+            <textarea maxlength="2000" name="goal_progress" id="goal_progress" placeholder="Provide information from the IEP and/or progress reports." required></textarea>
+		</div>	
+<!-- ##########################################################		Add Questions anywhere above this line		##################################################################### -->
+          
+          <input type="button" onclick="formSubmission(event)" value="Submit" class="autofill-button">
+		</div>
+	</div>
+      </form>
+	  </section>
+  	     <!--==Footer=============================================-->
+    <footer>
+        <div class="footer-container">
+
+            <!--company-box-->
+            <div class="footer-company-box">
+                <!--logo-->
+                <a href="index.html" class="footer-logo">
+                    <img src="images/CareLogo-1.png" alt="" />
+                </a>
+                <!--details-->
+                <p>
+                    The CARE Project supports patients with autism and their families during
+                    medical visits. CARE supports healthcare providers in delivering patient, and family centered care that is
+                    informed by evidence-based practices used in general and special education classrooms.
+                </p>
+                <!--social-box-->
+                <!--place holders for when social media is created-->
+                <div class="footer-social">
+                    <!--<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>-->
+                </div>
+            </div><!--company-box-end-->
+            <!--link-->
+
+            <div class="footer-link-box">
+                <strong>Main Links</strong>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                    <!-- insert link to google form below -->
+                    <li><a href="https://forms.office.com/r/BNEXk8XpCs">Contact</a></li>
+					<li><a href="register.html">Register</a></li>
+                    <li><a href="form.html">Update Profile</a></li>
+                    <li><a href="submission.html">Case Survey</a></li>
+                </ul>
+            </div>
+        </div><!--container-end-->
+        <!--Wait on Copywrite
+        <div class="footer-bottom">
+            <span>Made By CARE</span>
+            <span>Copyright 2023 - CARE</span>
+        </div>-->
+    </footer> <!--footer-end-->
+
+
+</body>
+</html>
