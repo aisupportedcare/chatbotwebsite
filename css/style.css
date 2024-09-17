@@ -1394,7 +1394,7 @@ footer {
 
 .close-button {
     position: fixed;
-    right: 0;
+    right: 85%;
     padding: 5px 10px;
     background-color: #e0e0e0;
     color: black;
