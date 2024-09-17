@@ -68,6 +68,7 @@ email: bbmirza117@gmail.com
 	async function botWindowDown() {
 		document.getElementById("middle-layer").style.display = 'none';
 		document.getElementById("top-layer").style.display = 'none';
+		document.getElementById("close-button").style.display = 'none';
 	}
 
 	function createUserChatBubble(message) {
@@ -151,7 +152,7 @@ email: bbmirza117@gmail.com
 <body>
 	<div id="middle-layer" style="display: none"></div>
 	<div id="top-layer" style="display: none"></div>
-	<button class='close-button' onclick="botWindowDown()")>
+	<button class='close-button' style="display: none" onclick="botWindowDown()")>
 	<!-- Spinner Animation -->
 	<div id="loadingOverlay">
 		<div id="loadingSpinner" class="cssload-container">
