@@ -1391,9 +1391,15 @@ footer {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Creates a shadow for a window effect */
     z-index: 1100; /* Ensures it stays on top of the middle layer */
     padding: 20px; /* Optional: adds padding inside the window */
-    overflow: auto; /* Allows scrolling when content overflows */
     display: flex;
     flex-direction: column; /* Ensures the input bar is pushed to the bottom */
+}
+
+/* Messages Container */
+.messages-container {
+    flex: 1;
+    overflow-y: auto; /* Allows scrolling for messages */
+    padding-bottom: 80px; /* Ensure space for input bar */
 }
 
 /* Input Bar */
@@ -1408,6 +1414,7 @@ footer {
     align-items: center;
     padding: 10px; /* Add padding for spacing */
     box-sizing: border-box; /* Ensure padding doesn't affect width calculation */
+    z-index: 1100; /* Make sure it is above the messages container */
 }
 
 /* Text Input Field */
@@ -1437,7 +1444,7 @@ footer {
 .close-button {
     position: fixed;
     right: 7%;
-    top: 7%;
+    top: 8%;
     padding: 5px 10px;
     background-color: #A9A9A9;
     color: black;
