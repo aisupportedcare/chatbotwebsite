@@ -1406,13 +1406,13 @@ footer {
 
 .input-bar {
     position: fixed;
+    bottom: 7%;
+    left: 7%;
     width: 88%;
-    height: 16%; /* 16% of the chat window height */
+    height: 8%;
     background-color: #001f3f; /* Very dark blue color */
-    display: flex;
     align-items: center;
-    padding: 10px; /* Add padding for spacing */
-    box-sizing: border-box; /* Ensure padding doesn't affect width calculation */
+    padding: 20px; /* Add padding for spacing */
 }
 
 .input-bar input[type="text"] {
