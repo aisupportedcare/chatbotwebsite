@@ -1372,8 +1372,8 @@ footer {
     padding: 10px;
     margin: 5px;
     border-radius: 10px;
-    max-width: 60%;
-    font-size: 200%;
+    max-width: 85%;
+    font-size: 150%;
     float: left;
     clear: both;
 }
@@ -1384,8 +1384,8 @@ footer {
     padding: 10px;
     margin: 5px;
     border-radius: 10px;
-    max-width: 60%;
-    font-size: 200%;
+    max-width: 85%;
+    font-size: 150%;
     float: right;
     clear: both;
 }
