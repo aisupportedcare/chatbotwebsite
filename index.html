@@ -51,19 +51,14 @@ email: bbmirza117@gmail.com
 		window.alert("Something went wrong. Please try again later.");
 	}
 
-	
 	async function botWindowUp() {
-	    // Create the middle layer
-	    var middleLayer = document.createElement("div");
-	    middleLayer.id = "middle-layer";
-	    document.body.appendChild(middleLayer);
+		// Create the middle layer
+		document.getElementById("middle-layer").style.display = 'block';
 
-	    // Create the top layer
-	    var topLayer = document.createElement("div");
-	    topLayer.id = "top-layer";
-	    document.body.appendChild(topLayer);
+		// Create the top layer
+		document.getElementById("top-layer").style.display = 'block';
 
-	    createUserChatBubble('Hello!');
+		createUserChatBubble('Hello!');
 		createBotChatBubble('How Can I help?');
 	};
 
