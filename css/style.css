@@ -1342,6 +1342,30 @@ footer {
 	}
 }
 
+#middle-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly translucent gray */
+    z-index: 1000; /* Ensures it stays on top of the base content */
+}
+
+#top-layer {
+    position: fixed;
+    top: 7%;
+    left: 7%;
+    width: 88%;
+    height: 88%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Creates a shadow for a window effect */
+    z-index: 1100; /* Ensures it stays on top of the middle layer */
+    padding: 20px; /* Optional: adds padding inside the window */
+    overflow: auto; /* Allows for scrolling if content overflows */
+}
+
 .user-bubble {
     background-color: #0084FF;
     color: #fff;
@@ -1368,43 +1392,20 @@ footer {
     clear: both;
 }
 
-/* Middle Layer */
-#middle-layer {
+.close-button {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Slightly translucent gray */
-    z-index: 1000; /* Ensures it stays on top of the base content */
+    right: 7%;
+    padding: 5px 10px;
+    background-color: #A9A9A9;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 1000;
 }
 
-/* Top Layer (Chat Window) */
-#top-layer {
-    position: fixed;
-    top: 7%;
-    left: 7%;
-    width: 88%;
-    height: 88%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Creates a shadow for a window effect */
-    z-index: 1100; /* Ensures it stays on top of the middle layer */
-    padding: 20px; /* Optional: adds padding inside the window */
-    display: flex;
-    flex-direction: column; /* Ensures the input bar is pushed to the bottom */
-}
-
-/* Messages Container */
-.messages-container {
-    flex: 1;
-    overflow-y: auto; /* Allows scrolling for messages */
-    padding-bottom: 80px; /* Ensure space for input bar */
-}
-
-/* Input Bar */
 .input-bar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -1414,10 +1415,8 @@ footer {
     align-items: center;
     padding: 10px; /* Add padding for spacing */
     box-sizing: border-box; /* Ensure padding doesn't affect width calculation */
-    z-index: 1100; /* Make sure it is above the messages container */
 }
 
-/* Text Input Field */
 .input-bar input[type="text"] {
     width: 85%; /* Takes up 85% of the blue stripe */
     padding: 10px;
@@ -1427,7 +1426,7 @@ footer {
     outline: none; /* Remove input outline */
 }
 
-/* Send Button */
+/* Send button */
 .input-bar input[type="button"] {
     width: 15%; /* Takes up remaining space */
     padding: 10px;
@@ -1438,19 +1437,5 @@ footer {
     cursor: pointer;
     margin-left: 10px; /* Space between input and button */
     font-size: 14px;
+    /* Ensure button text is centered */
 }
-
-/* Close Button */
-.close-button {
-    position: fixed;
-    right: 7%;
-    top: 8%;
-    padding: 5px 10px;
-    background-color: #A9A9A9;
-    color: black;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    z-index: 1000;
-}
-
