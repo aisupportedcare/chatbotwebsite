@@ -65,6 +65,11 @@ email: bbmirza117@gmail.com
 		createBotChatBubble('wild bro');
 	};
 
+	async function botWindowDown() {
+		document.getElementById("middle-layer").style.display = 'none';
+		document.getElementById("top-layer").style.display = 'none';
+	}
+
 	function createUserChatBubble(message) {
 	    var chatWindow = document.getElementById('top-layer');
 	    var chatBubble = document.createElement('div');
@@ -146,6 +151,7 @@ email: bbmirza117@gmail.com
 <body>
 	<div id="middle-layer" style="display: none"></div>
 	<div id="top-layer" style="display: none"></div>
+	<button class='close-button' onclick="botWindowDown()")>
 	<!-- Spinner Animation -->
 	<div id="loadingOverlay">
 		<div id="loadingSpinner" class="cssload-container">
