@@ -1408,7 +1408,7 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 88%;
     height: 16%; /* 16% of the chat window height */
     background-color: #001f3f; /* Very dark blue color */
     display: flex;
