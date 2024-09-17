@@ -1353,7 +1353,7 @@ footer {
 }
 
 #top-layer {
-    position: fixed;
+    position: relative;
     top: 7%;
     left: 7%;
     width: 88%;
@@ -1394,8 +1394,6 @@ footer {
 
 .close-button {
     position: fixed;
-    top: 10px;
-    right: 10px;
     padding: 5px 10px;
     background-color: #e0e0e0;
     color: black;
