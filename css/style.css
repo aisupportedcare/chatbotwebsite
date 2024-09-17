@@ -1353,7 +1353,7 @@ footer {
 }
 
 #top-layer {
-    position: relative;
+    position: fixed;
     top: 7%;
     left: 7%;
     width: 88%;
