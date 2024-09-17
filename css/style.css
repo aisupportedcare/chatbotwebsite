@@ -1403,37 +1403,3 @@ footer {
     font-size: 14px;
     z-index: 1000;
 }
-
-.input-bar {
-    position: fixed;
-    bottom: 7%;
-    left: 7%;
-    width: 88%;
-    height: 8%;
-    background-color: #001f3f; /* Very dark blue color */
-    align-items: center;
-    padding: 20px; /* Add padding for spacing */
-}
-
-.input-bar input[type="text"] {
-    width: 85%; /* Takes up 85% of the blue stripe */
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    outline: none; /* Remove input outline */
-}
-
-/* Send button */
-.input-bar input[type="button"] {
-    width: 15%; /* Takes up remaining space */
-    padding: 10px;
-    background-color: #e0e0e0; /* Light gray button */
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px; /* Space between input and button */
-    font-size: 14px;
-    /* Ensure button text is centered */
-}
