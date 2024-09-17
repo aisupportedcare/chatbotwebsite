@@ -1391,9 +1391,9 @@ footer {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Creates a shadow for a window effect */
     z-index: 1100; /* Ensures it stays on top of the middle layer */
     padding: 20px; /* Optional: adds padding inside the window */
-    overflow: hidden; /* Hide overflow to prevent unwanted scrolling */
+    overflow: auto; /* Allows scrolling when content overflows */
     display: flex;
-    flex-direction: column; /* Ensures that the input bar is at the bottom */
+    flex-direction: column; /* Ensures the input bar is pushed to the bottom */
 }
 
 /* Input Bar */
