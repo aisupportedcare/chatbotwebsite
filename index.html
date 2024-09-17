@@ -62,7 +62,51 @@ email: bbmirza117@gmail.com
 	    var topLayer = document.createElement("div");
 	    topLayer.id = "top-layer";
 	    document.body.appendChild(topLayer);
+
+	    createUserChatBubble('Hello!');
+		createBotChatBubble('How Can I help?');
 	};
+
+	function createUserChatBubble(message) {
+	    var chatWindow = document.getElementById('top-layer');
+	    var chatBubble = document.createElement('div');
+	    
+	    chatBubble.className = 'chat-bubble user';
+	    chatBubble.style.backgroundColor = '#0084FF';
+	    chatBubble.style.color = '#fff';
+	    chatBubble.style.padding = '10px';
+	    chatBubble.style.margin = '5px';
+	    chatBubble.style.borderRadius = '10px';
+	    chatBubble.style.maxWidth = '60%';
+	    chatBubble.style.float = 'left';
+	    chatBubble.style.clear = 'both'; // Ensure new bubbles are on a new line
+	    
+	    chatBubble.innerText = message;
+	    
+	    chatWindow.appendChild(chatBubble);
+	    chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to the latest message
+	}
+
+	// Function to create a bot chat bubble (right side)
+	function createBotChatBubble(message) {
+	    var chatWindow = document.getElementById('middle-layer');
+	    var chatBubble = document.createElement('div');
+	    
+	    chatBubble.className = 'chat-bubble bot';
+	    chatBubble.style.backgroundColor = '#e5e5ea';
+	    chatBubble.style.color = '#000';
+	    chatBubble.style.padding = '10px';
+	    chatBubble.style.margin = '5px';
+	    chatBubble.style.borderRadius = '10px';
+	    chatBubble.style.maxWidth = '60%';
+	    chatBubble.style.float = 'right';
+	    chatBubble.style.clear = 'both'; // Ensure new bubbles are on a new line
+	    
+	    chatBubble.innerText = message;
+	    
+	    chatWindow.appendChild(chatBubble);
+	    chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to the latest message
+	}
 	
 	async function formSubmission(event) {
 		document.getElementById("loadingOverlay").style.display = "block";
