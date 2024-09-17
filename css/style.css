@@ -1366,7 +1366,7 @@ footer {
     overflow: auto; /* Allows for scrolling if content overflows */
 }
 
-#user-bubble {
+.user-bubble {
     background-color: #0084FF;
     color: #fff;
     padding: 10px;
@@ -1377,7 +1377,7 @@ footer {
     clear: both;
 }
 
-#bot-bubble {
+.bot-bubble {
     background-color: #e5e5ea;
     color: #000;
     padding: 10px;
