@@ -53,16 +53,25 @@ email: bbmirza117@gmail.com
 
 	
 	async function botWindowUp() {
-	    // Create the middle layer
+	    // Create the middle layer (the chat window)
 	    var middleLayer = document.createElement("div");
 	    middleLayer.id = "middle-layer";
+	    middleLayer.style.position = "fixed";
+	    middleLayer.style.bottom = "0";
+	    middleLayer.style.left = "0";
+	    middleLayer.style.width = "100%";
+	    middleLayer.style.height = "400px"; // Adjust height as needed
+	    middleLayer.style.overflowY = "auto"; // Enable scrolling once content exceeds height
+	    middleLayer.style.backgroundColor = "#f1f1f1";
+	    middleLayer.style.padding = "10px";
+	    middleLayer.style.boxShadow = "0px 0px 10px rgba(0,0,0,0.2)";
 	    document.body.appendChild(middleLayer);
 
-	    // Create the top layer
+	    // Create the top layer (for any other top-level controls or UI)
 	    var topLayer = document.createElement("div");
 	    topLayer.id = "top-layer";
 	    document.body.appendChild(topLayer);
-	};
+	}
 	
 	async function formSubmission(event) {
 		document.getElementById("loadingOverlay").style.display = "block";
