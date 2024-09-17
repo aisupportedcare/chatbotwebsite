@@ -1374,7 +1374,8 @@ footer {
     border-radius: 10px;
     max-width: 85%;
     font-size: 150%;
-    float: left;
+    float: right;
+    word-wrap: break-word;
     clear: both;
 }
 
@@ -1386,6 +1387,7 @@ footer {
     border-radius: 10px;
     max-width: 85%;
     font-size: 150%;
-    float: right;
+    float: left;
+    word-wrap: break-word;
     clear: both;
 }
