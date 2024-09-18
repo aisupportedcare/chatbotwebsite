@@ -1383,8 +1383,8 @@ footer {
     background-color: #0084FF;
     color: #fff;
     padding: 10px;
-    padding-bottom: 6%
     margin: 5px;
+    margin-bottom: 6%;
     border-radius: 10px;
     max-width: 85%;
     font-size: 150%;
@@ -1398,6 +1398,7 @@ footer {
     color: #000;
     padding: 10px;
     margin: 5px;
+    margin-bottom: 6%;
     border-radius: 10px;
     max-width: 85%;
     font-size: 150%;
