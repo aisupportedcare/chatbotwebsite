@@ -1366,6 +1366,18 @@ footer {
     overflow: auto; /* Allows for scrolling if content overflows */
 }
 
+.chat-input {
+    position: fixed;
+    bottom: 7%;
+    left: 7%;
+    width: 80%;
+    height: 16px;
+    border-radius: 2px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1101;
+    padding: 2px;
+}
+
 .user-bubble {
     background-color: #0084FF;
     color: #fff;
