@@ -1368,10 +1368,10 @@ footer {
 
 .chat-input {
     position: fixed;
-    bottom: 7%;
+    bottom: 9%;
     left: 9%;
-    width: 80%;
-    height: 4%;
+    width: 60%;
+    height: 6%;
     border-radius: 200px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     z-index: 1101;
