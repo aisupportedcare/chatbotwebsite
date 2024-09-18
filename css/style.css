@@ -1408,19 +1408,19 @@ footer {
 }
 
 .user-bubble + .bot-bubble {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .user-bubble + .userbubble {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .bot-bubble + .user-bubble {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .bot-bubble + .user-bubble {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .close-button {
