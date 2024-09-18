@@ -1383,8 +1383,8 @@ footer {
     background-color: #0084FF;
     color: #fff;
     padding: 10px;
+    padding-bottom: 10%;
     margin: 5px;
-    margin-bottom: 6%;
     border-radius: 10px;
     max-width: 85%;
     font-size: 150%;
@@ -1397,14 +1397,30 @@ footer {
     background-color: #e5e5ea;
     color: #000;
     padding: 10px;
+    padding-bottom: 10%;
     margin: 5px;
-    margin-bottom: 6%;
     border-radius: 10px;
     max-width: 85%;
     font-size: 150%;
     float: left;
     word-break: break-all;
     clear: both;
+}
+
+.user-bubble + .bot-bubble {
+    padding-bottom: 10px;
+}
+
+.user-bubble + .userbubble {
+    padding-bottom: 10px;
+}
+
+.bot-bubble + .user-bubble {
+    padding-bottom: 10px;
+}
+
+.bot-bubble + .user-bubble {
+    padding-bottom: 10px;
 }
 
 .close-button {
