@@ -1401,7 +1401,7 @@ footer {
     max-width: 85%;
     font-size: 150%;
     float: right;
-    word-break: break-all;
+    overflow-wrap: normal;
     clear: both;
 }
 
@@ -1414,7 +1414,7 @@ footer {
     max-width: 85%;
     font-size: 150%;
     float: left;
-    word-break: break-all;
+    overflow-wrap: normal;
     clear: both;
 }
 
