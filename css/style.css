@@ -1383,7 +1383,6 @@ footer {
     background-color: #0084FF;
     color: #fff;
     padding: 10px;
-    padding-bottom: 10%;
     margin: 5px;
     border-radius: 10px;
     max-width: 85%;
@@ -1397,7 +1396,6 @@ footer {
     background-color: #e5e5ea;
     color: #000;
     padding: 10px;
-    padding-bottom: 10%;
     margin: 5px;
     border-radius: 10px;
     max-width: 85%;
@@ -1405,22 +1403,6 @@ footer {
     float: left;
     word-break: break-all;
     clear: both;
-}
-
-.user-bubble + .bot-bubble {
-    padding-bottom: 0px;
-}
-
-.user-bubble + .userbubble {
-    padding-bottom: 0px;
-}
-
-.bot-bubble + .user-bubble {
-    padding-bottom: 0px;
-}
-
-.bot-bubble + .user-bubble {
-    padding-bottom: 0px;
 }
 
 .close-button {
