@@ -29,6 +29,18 @@ email: bbmirza117@gmail.com
 </head>
 <script>
 
+
+	document.getElementById('chat-input').addEventListener('keydown', function(event) {
+	  if (event.key === 'Enter') {
+	    sendUserMessage();
+	  }
+	});
+
+	function sendMessage() {
+	  // Your logic for handling the Enter key press, e.g., sending a message
+	  console.log("Message sent!");
+	}
+
 	async function fetchWithRetry(url, options, retries = 3, backoff = 15000) {
 		let attempt = 0;
 		while (attempt < retries) {
