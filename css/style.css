@@ -1434,3 +1434,7 @@ footer {
     font-size: 14px;
     z-index: 1000;
 }
+
+#spacer {
+    padding-bottom: 6%;
+}

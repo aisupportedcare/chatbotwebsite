@@ -72,7 +72,7 @@ email: bbmirza117@gmail.com
 	}
 
 	function createUserChatBubble(message) {
-	    var chatWindow = document.getElementById('top-layer');
+	    var chatWindow = document.getElementById('spacer');
 	    var chatBubble = document.createElement('div');
 	    
 	    chatBubble.className = 'user-bubble';
@@ -84,7 +84,7 @@ email: bbmirza117@gmail.com
 
 	// Function to create a bot chat bubble (right side)
 	function createBotChatBubble(message) {
-	    var chatWindow = document.getElementById('top-layer');
+	    var chatWindow = document.getElementById('spacer');
 	    var chatBubble = document.createElement('div');
 	    
 	    chatBubble.className = 'bot-bubble';
@@ -152,8 +152,10 @@ email: bbmirza117@gmail.com
 <body>
 	<div id="middle-layer" style="display: none"></div>
 	<div id="top-layer" style="display: none">
+	<div id="spacer">
 		<input type="button" value="Close" class='close-button' onclick="botWindowDown()")>
 		<input type="text" class="chat-input" id="chat-input">
+	</div>
 	</div>
 	<!-- Spinner Animation -->
 	<div id="loadingOverlay">
