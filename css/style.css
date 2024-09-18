@@ -1380,6 +1380,19 @@ footer {
     font-size: 120%;
 }
 
+.chat-send {
+    position: fixed;
+    bottom: 9%;
+    left: 71%;
+    width: 6%;
+    height: 6%;
+    border-radius: 200px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1101;
+    padding: 20px;
+    font-size: 120%;
+}
+
 .user-bubble {
     background-color: #0084FF;
     color: #fff;

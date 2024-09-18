@@ -71,6 +71,11 @@ email: bbmirza117@gmail.com
 		document.getElementById("close-button").style.display = 'none';
 	}
 
+	function sendUserMessage() {
+		createUserChatBubble(document.getElementById("chat-input").vlaue);
+		document.getElementById("chat-input").value = "";
+	}
+
 	function createUserChatBubble(message) {
 	    var chatWindow = document.getElementById('top-layer');
 	    var chatBubble = document.createElement('div');
@@ -155,6 +160,7 @@ email: bbmirza117@gmail.com
 	<div id="spacer">
 		<input type="button" value="Close" class='close-button' onclick="botWindowDown()")>
 		<input type="text" class="chat-input" id="chat-input">
+		<input type="button" value="Send" class="chat-send-" onclick="sendUserMessage()">
 	</div>
 	</div>
 	<!-- Spinner Animation -->
