@@ -1363,7 +1363,7 @@ footer {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Creates a shadow for a window effect */
     z-index: 1100; /* Ensures it stays on top of the middle layer */
     padding: 20px; /* Optional: adds padding inside the window */
-    padding-bottom: 10%;
+    padding-bottom: 6%;
     overflow: auto; /* Allows for scrolling if content overflows */
 }
 
