@@ -67,6 +67,7 @@ email: bbmirza117@gmail.com
 	}
 
 	function sendUserMessage() {
+		if(document.getElementById("chat-input").value === "") {return;};
 		createUserChatBubble(document.getElementById("chat-input").value);
 		document.getElementById("chat-input").value = "";
 	}
