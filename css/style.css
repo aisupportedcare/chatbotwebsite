@@ -1375,7 +1375,8 @@ footer {
     border-radius: 200px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     z-index: 1101;
-    padding: 2px;
+    padding: 20px;
+    font-size: 120%;
 }
 
 .user-bubble {
